@@ -11,7 +11,7 @@ runs:
   using: 'composite'
   steps:
     - name: Run maven action
-      uses: snyk/$SNYK_ACTION
+      uses: snyk/actions/$SNYK_ACTION_LANG
       with:
         args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
         
