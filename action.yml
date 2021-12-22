@@ -24,14 +24,16 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Run maven action
+      if: ${{ inputs.base }} == "maven"
+      uses: snyk/actions/maven-3-jdk-11@master
+      with:
+        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
+        
     - name: Run gradle action
       if: ${{ inputs.base }} == "gradle"
       uses: snyk/actions/gradle-jdk16@master
       with:
         args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
 
-    - name: Run maven action
-      if: ${{ inputs.base }} == "maven"
-      uses: snyk/actions/maven-3-jdk-11@master
-      with:
-        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
+
