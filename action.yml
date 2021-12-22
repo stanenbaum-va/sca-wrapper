@@ -1,0 +1,37 @@
+# action.yml
+name: 'SCA Action'
+description: 'SCA Action'
+inputs:
+  base:
+    description: 'build tool or language'
+    required: true
+    default: ''
+  # token:
+  #   description: 'snyk token'
+  #   required: true
+  #   default: ''
+  # org:
+  #   description: 'snyk org name'
+  #   required: true
+  #   default: ''
+# outputs:
+#   song-url: 
+#     description: 'The URL of the random song'
+#   song-name: 
+#     description: 'The song name of the random song'
+#   song-artist: 
+#     description: 'The artist name of the random song'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run gradle action
+      if: ${{ inputs.base }} == "gradle"
+      uses: snyk/actions/gradle-jdk16@master
+      with:
+        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
+
+    - name: Run maven action
+      if: ${{ inputs.base }} == "maven"
+      uses: snyk/actions/maven-3-jdk-11@master
+      with:
+        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
