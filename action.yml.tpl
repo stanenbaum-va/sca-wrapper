@@ -1,11 +1,6 @@
 # action.yml
-name: 'SCA Action'
-description: 'SCA Action'
-inputs:
-  base:
-    description: 'build tool or language'
-    required: true
-    default: ''
+name: 'SCA Wrapper Action'
+description: 'Wraps SCA actions to allow for flexibility in defining SCA build tools/languages'
 
 runs:
   using: 'composite'
