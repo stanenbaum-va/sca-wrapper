@@ -5,10 +5,10 @@ description: 'Wraps SCA actions to allow for flexibility in defining SCA build t
 runs:
   using: 'composite'
   steps:
-    - name: Run maven action
+    - name: Run action
       uses: snyk/actions/$SNYK_ACTION_LANG
       with:
-        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
+        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif --all-projects
         
 
 
