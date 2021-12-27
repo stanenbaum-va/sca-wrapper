@@ -8,7 +8,8 @@ runs:
     - name: Run action
       uses: snyk/actions/$SNYK_ACTION_LANG@master
       with:
-        args: --org=${{ env.SNYK-ORG-NAME }} --sarif-file-output=sca.sarif
+        command: $CMD
+        args: $ARGS
         
 
 
